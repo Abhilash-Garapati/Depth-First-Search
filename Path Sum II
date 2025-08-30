@@ -1,0 +1,28 @@
+class Solution 
+{
+    public static ArrayList<ArrayList<Integer>> printPaths(Node root, int sum) 
+    {
+        // code here
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        ArrayList<Integer> path = new ArrayList<>();
+        int target = 0;
+        paths(root,res,path,sum,target);
+        return res;
+    }
+    public static void paths(Node root,ArrayList<ArrayList<Integer>> res,ArrayList<Integer> path,int sum,int target )
+    {
+        if(root==null)
+        {
+            return;
+        }
+        path.add(root.data);
+        target +=root.data;
+        if(target==sum)
+        {
+            res.add(new ArrayList<>(path));
+        }
+        paths(root.left,res,path,sum,target);
+        paths(root.right,res,path,sum,target);
+        path.remove(path.size()-1);
+    }
+}
